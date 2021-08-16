@@ -61,16 +61,13 @@
                             @click="showEditDialog(scope.row.id)"
                         >
                         </el-button>
-                        <!-- 点击修改按钮显示 -->
+                        <!-- 删除 -->
                         <el-button
                             circle
-                            icon="el-icon-check"
-                            style="display:none"
-                            type="success"
+                            icon="el-icon-delete"
+                            type="danger"
+                            @click="deleteUser(scope.row.id)"
                         >
-                        </el-button>
-                        <!-- 删除 -->
-                        <el-button circle icon="el-icon-delete" type="danger">
                         </el-button>
                         <!-- 提示信息 -->
                         <el-tooltip
@@ -178,7 +175,6 @@
                 <el-button type="primary" @click="edituser">确 定</el-button>
             </span>
         </el-dialog>
-        
     </div>
 </template>
 
@@ -300,11 +296,9 @@
             },
             // 监听开关状态的改变
             async userStateChanged(userinfo) {
-                console.log(typeof userinfo.id);
                 const { data } = await this.axios.put(
                     `users/${userinfo.id}/state/${userinfo.mg_state}`
                 );
-                console.log(data);
                 try {
                     if (data.meta.status !== 200) {
                         userinfo.mg_state = !userinfo.mg_state;
@@ -378,7 +372,40 @@
                             this.$message.error('修改用户失败，请稍后再试');
                         });
                 });
+            },
+            // 删除用户
+            deleteUser(id) {
+                this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                    .then(() => {
+                        this.axios
+                            .delete(`/users/${id}`)
+                            .then(value => {
+                                // 删除成功 ，重新获取列表数据
+                                this.getUserList();
+                                this.$message({
+                                    type: 'success',
+                                    message: value.data.meta.msg
+                                });
+                            })
+                            .catch(err => {
+                                this.$message({
+                                    type: 'error',
+                                    message: '删除失败，请稍后再试!'
+                                });
+                            });
+                    })
+                    .catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
             }
+            // 
         }
     };
 </script>
