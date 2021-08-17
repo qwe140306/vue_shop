@@ -25,8 +25,18 @@ import {
     Switch,
     Tooltip,
     Pagination,
-    Dialog
+    Dialog,
+    Tag,
+    Loading,
+    Tree,
+    Select,
+    Option
 } from 'element-ui';
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Tree);
+Vue.use(Loading);
+Vue.use(Tag);
 Vue.use(Dialog);
 Vue.use(Pagination);
 Vue.use(Tooltip);
@@ -50,6 +60,7 @@ Vue.use(Main);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
 Vue.use(Card);
+Vue.prototype.$loading = Loading;
 Vue.prototype.$message = Message;
 // MessageBox 有四个 MessageBox, MessageBox.alert, MessageBox.confirm 和 MessageBox.prompt
 Vue.prototype.$confirm = MessageBox.confirm;

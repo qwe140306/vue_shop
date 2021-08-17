@@ -3,7 +3,7 @@
         <!-- 头部 -->
         <el-header>
             <div>
-                <img src="./heima.png" alt="" />
+                <img src="./a.png" alt="" />
                 <span>电商后台管理系统</span>
             </div>
             <el-button type="info" @click="logout" ref="btn">
@@ -47,7 +47,7 @@
                             :key="subItem.id"
                         >
                             <template slot="title">
-                                <i class="el-icon-menu"></i>
+                                <i class="el-icon-s-operation"></i>
                                 <span>{{ subItem.authName }}</span>
                             </template></el-menu-item
                         >
@@ -71,7 +71,7 @@ export default {
             mennlist: [],
             iconsObj: {
                 '125': 'icon-users',
-                '103': 'icon-tijikongjian',
+                '103': 'el-icon-s-tools',
                 '101': 'icon-shangpin',
                 '102': 'icon-danju',
                 '145': 'icon-baobiao'
@@ -153,6 +153,9 @@ export default {
         align-items: center;
         span {
             margin-left: 15px;
+        }
+        img{
+            width: 50px;
         }
     }
     button {

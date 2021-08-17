@@ -6,6 +6,8 @@ import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
 import Welcome from '../pages/Home/Welcome';
 import Users from '../pages/Home/Users';
+import rights from '../pages/Home/power/Rights';
+import Roles from '../pages/Home/power/Roles';
 
 Vue.use(VueRouter);
 
@@ -50,7 +52,9 @@ const router = new VueRouter({
             //子路由
             children: [
                 { name: 'welcome', path: 'welcome', component: Welcome },
-                { name: 'users', path: 'users', component: Users }
+                { name: 'users', path: 'users', component: Users },
+                { name: 'rights', path: 'rights', component: rights },
+                { name: 'Roles', path: 'Roles', component: Roles },
             ]
         },
         // 如果所有路径没找到就跳转到404页面
